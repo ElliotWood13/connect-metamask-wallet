@@ -11,8 +11,7 @@ export const SetupWallet = () => {
     const [loading, setLoading] = useState(false)
     const { chainId, setChainId, accounts } = useEthereumListeners()
     const bscChainId = networks.bsc.chainId
-    console.log('accounts', accounts);
-    console.log('chainId', chainId);
+    const setupComplete = chainId === bscChainId && accounts[0]
 
     useEffect(() => {
         if (window.ethereum) {
@@ -24,47 +23,42 @@ export const SetupWallet = () => {
         setStatus({ state: '', message: '' })
 
         if (window.ethereum) {
-            setLoading(true)
+            try {
+                setLoading(true)
 
-            await onConnectWallet().then((response) => {
-                return response  
-            }).catch(() => {
-                setLoading(false)
-                setStatus({ state: 'error', message: 'You need to login to MetaMask.' })
-                return
-            })
-            
-            if (chainId === bscChainId) return
+                await onConnectWallet().then((response) => {
+                    if (response.length === 0) throw Error('You need to login to MetaMask.')
+                })
+
+                if (chainId === bscChainId) return
     
-            await onChangeNetwork(networks.bsc)
+                await onChangeNetwork(networks.bsc)
 
-            const checkedId = await onCheckNetwork()
+                const checkedId = await onCheckNetwork()
 
-            if (checkedId === bscChainId) { 
-                setStatus({ state: 'success', message: 'You have successfully connected your wallet!' }) 
-            } else {
-                setStatus({ state: 'error', message: 'MetaMask was unable to switch network. Please try again..' })
+                if (checkedId === bscChainId) { 
+                    setStatus({ state: 'success', message: 'You have successfully connected your wallet!' }) 
+                } else {
+                    throw Error('MetaMask was unable to switch network. Please try again..')
+                }
+
                 setLoading(false)
-            }
-    
-            setLoading(false)
-        } else {
+
+            } catch (error) {
+                setLoading(false)
+                setStatus({ state: 'error', message: error.message })
+            }} 
+        else {
             setStatus({ state: 'error', message: 'You need to install the MetaMask Chrome Extension to use this website.' })
         }
-
     }
-
 
     return (
         <>
-        {bscChainId === chainId ? (
-            <h2>Welcome to Impact</h2>
-            ) : (
-            <>
-                <button onClick={handleConnectWallet} disabled={loading}>Connect Wallet</button>
-                {status.state ? <Alert {...status} /> : null}
-            </>
-            )}
+            {accounts[0] ? <p>Connected account: {accounts[0]}</p> : null}
+            {chainId && <p>Connected network: {chainId}</p>}
+            {!setupComplete && <button onClick={handleConnectWallet} disabled={loading}>Connect Wallet</button>}
+            {status.state && <Alert {...status} />}
         </>
     )
 }
