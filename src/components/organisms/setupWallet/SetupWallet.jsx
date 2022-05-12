@@ -5,6 +5,7 @@ import { onChangeNetwork } from '../../../utils/onChangeNetwork'
 import { Alert } from '../../molecules/alert'
 import { networks } from '../../../networks'
 import { useEthereumListeners } from '../../../hooks/useEthereumListeners'
+import { PrimaryButton } from '../../atoms/button'
 
 export const SetupWallet = () => {
     const [status, setStatus] = useState({ state: '', message: '' })
@@ -57,7 +58,7 @@ export const SetupWallet = () => {
         <>
             {accounts[0] ? <p>Connected account: {accounts[0]}</p> : null}
             {chainId && <p>Connected network: {chainId}</p>}
-            {!setupComplete && <button onClick={handleConnectWallet} disabled={loading}>Connect Wallet</button>}
+            {!setupComplete && <PrimaryButton text="Connect Wallet" onClick={handleConnectWallet} disabled={loading} />}
             {status.state && <Alert {...status} />}
         </>
     )
