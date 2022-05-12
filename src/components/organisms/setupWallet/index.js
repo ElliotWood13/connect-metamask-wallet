@@ -1,0 +1,1 @@
+export { SetupWallet } from './SetupWallet'
