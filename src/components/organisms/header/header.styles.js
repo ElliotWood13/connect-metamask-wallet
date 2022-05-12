@@ -4,6 +4,7 @@ const HeaderWrapper = styled.header`
   width: 100%;
   z-index: 10;
   background-color: #fff;
+  border-bottom: 1px solid #cccccc;
 `;
 
 const HeaderContentWrapper = styled.div`

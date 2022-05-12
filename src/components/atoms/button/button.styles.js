@@ -11,6 +11,10 @@ const Primary = styled.button`
   padding: 8px 16px;
   box-shadow: 0px 8px 15px rgb(0 0 0 / 35%);
 
+  :disabled {
+    opacity: 0.8;
+  }
+
   :hover {
     background-color: #313131;
     transform: scale(1.03);
