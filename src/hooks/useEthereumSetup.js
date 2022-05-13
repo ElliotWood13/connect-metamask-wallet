@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 
-export const useEthereumListeners = () => {
+export const useEthereumSetup = () => {
     const [chainId, setChainId] = useState('')
     const [accounts, setAccounts] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const onChainChanged = (id) => {
         setChainId(id)
@@ -14,11 +15,13 @@ export const useEthereumListeners = () => {
 
     useEffect(() => {        
         if (window.ethereum) {
+            setLoading(true)
             window.ethereum.on("chainChanged", onChainChanged);
             window.ethereum.on('accountsChanged', onAccountChanged);
             setTimeout(() => {
                 onChainChanged(window.ethereum.chainId)
                 onAccountChanged([window.ethereum.selectedAddress])
+                setLoading(false)
             }, 1000);
         }
     
@@ -30,5 +33,5 @@ export const useEthereumListeners = () => {
         };
       }, []);
       
-      return { chainId, accounts}
+      return { chainId, accounts, loading, setLoading}
 }

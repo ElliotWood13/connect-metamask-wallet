@@ -5,7 +5,7 @@ const SetupContainer = styled.div`
     max-width: 1200px;
     padding: 60px;
     margin: 0 auto;
-    `
+`
 
 const SetupWrapper = styled.div`
     display: flex;

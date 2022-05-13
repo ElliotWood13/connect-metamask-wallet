@@ -2,27 +2,15 @@ import { useState } from 'react'
 import { onConnectWallet } from '../../../utils/onConnectWallet'
 import { onCheckNetwork } from '../../../utils/onCheckNetwork'
 import { onChangeNetwork } from '../../../utils/onChangeNetwork'
-import { useEthereumListeners } from '../../../hooks/useEthereumListeners'
+import { useEthereumSetup } from '../../../hooks/useEthereumSetup'
 import { networks } from '../../../networks'
 import { SetupWallet } from './SetupWallet'
 
 export const SetupWalletContainer = () => {
     const [status, setStatus] = useState({ state: '', message: '' })
-    const [loading, setLoading] = useState(false)
-    const { chainId, accounts } = useEthereumListeners()
+    const { chainId, accounts, loading, setLoading } = useEthereumSetup()
     const bscChainId = networks.bsc.chainId
     const setupComplete = chainId === bscChainId && accounts[0]
-
-    // correct chain variable
-    // flicker when getting data at start - loading spinner and walletReady state?
-    // componentise setup complete
-
-    /*
-        Questions:
-        - Should I try to wallet_switchEthereumChain before wallet_addEthereumChain
-        - Is it best practice to have a connect wallet button and then a switch network button?
-        - Is setTimeout necessary when wanting to do anything with window.ethereum on mount so that the task goes on the callback task queue behind MetaMask injecting it's API to the window?
-    */
     
     const handleConnectWallet = async () => {
         setStatus({ state: '', message: '' })
