@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const Primary = styled.button`
-  border: 1px solid white;
+  border: 1px solid #fff;
   border-radius: 4px;
-  background-color: black;
-  color: white;
+  background-color: #000;
+  color: #fff;
   text-transform: capitalize;
   font-size: 16px;
   font-weight: 700;
@@ -12,11 +12,13 @@ const Primary = styled.button`
   box-shadow: 0px 8px 15px rgb(0 0 0 / 35%);
 
   :disabled {
-    opacity: 0.8;
+    opacity: 0.5;
   }
 
   :hover {
-    background-color: #313131;
+    color: #000;
+    background-color: #ffc30d;
+    border: 1px solid #000;
     transform: scale(1.03);
   }
 

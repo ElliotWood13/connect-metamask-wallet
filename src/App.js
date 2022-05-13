@@ -1,11 +1,11 @@
-import { SetupWallet } from './components/organisms/setupWallet'
+import { SetupWalletContainer } from './components/organisms/setupWallet'
 import { Layout } from './components/layouts/layout'
 
 const App = () => {
   return (
     <div>
       <Layout>
-        <SetupWallet />
+        <SetupWalletContainer />
       </Layout>
     </div>
   );

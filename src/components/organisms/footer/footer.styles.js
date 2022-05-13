@@ -5,7 +5,7 @@ const FooterWrapper = styled.footer`
   justify-content: flex-end;
   padding: 32px 20px;
   border-top: 1px solid #e8e7ec;
-  background-color: #fff;
+  background-color: #000;
 
   @media screen and (min-width: 1024px) {
     padding: 32px;

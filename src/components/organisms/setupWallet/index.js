@@ -1,1 +1,1 @@
-export { SetupWallet } from './SetupWallet'
+export { SetupWalletContainer } from './SetupWallet-container'
