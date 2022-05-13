@@ -23,8 +23,8 @@ const HeaderContentWrapper = styled.div`
 const Image = styled.img`
   height: 50px;
   width: 50px;
-  filter: drop-shadow(2px 4px 8px rgba(255,195,13,1));
   margin-right: 8px;
+  filter: drop-shadow(2px 4px 8px rgba(255,195,13,1));
 `
 
 const LogoText = styled.p`

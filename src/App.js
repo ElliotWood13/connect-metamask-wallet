@@ -3,11 +3,9 @@ import { Layout } from './components/layouts/layout'
 
 const App = () => {
   return (
-    <div>
-      <Layout>
-        <SetupWalletContainer />
-      </Layout>
-    </div>
+    <Layout>
+      <SetupWalletContainer />
+    </Layout>
   );
 }
 

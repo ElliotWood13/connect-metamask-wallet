@@ -3,8 +3,12 @@ import styled from "styled-components";
 const SetupContainer = styled.div`
     width: 100%;
     max-width: 1200px;
-    padding: 60px;
+    padding: 20px;
     margin: 0 auto;
+
+    @media screen and (min-width: 768px) {
+        padding: 60px;
+    }
 `
 
 const SetupWrapper = styled.div`

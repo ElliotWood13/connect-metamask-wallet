@@ -11,7 +11,7 @@ export const SetupWallet = ({ setupComplete, accounts, chainId, status, handleCo
                     <WalletData account={accounts[0]} chainId={chainId} />
                 ) : (
                     <>  
-                        <ButtonWrapper setupComplete={setupComplete}><PrimaryButton text="Connect Wallet" onClick={handleConnectWallet} disabled={loading} /></ButtonWrapper>
+                        <ButtonWrapper setupComplete={setupComplete}><PrimaryButton text="Connect Wallet" onClick={handleConnectWallet} disabled={loading} aria-label="Connect your MetaMask wallet" /></ButtonWrapper>
                         {status.state && <Alert {...status} />}
                     </>
                 )}

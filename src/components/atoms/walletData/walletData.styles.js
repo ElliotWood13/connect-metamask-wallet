@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+const WalletDataWrapper = styled.div``
+
 const SetupText = styled.p`
     display: flex;
     flex-direction: column;
@@ -19,4 +21,4 @@ const SetupTextKey = styled.span`
     font-weight: 700;
 `
 
-export { SetupText, SetupTextKey }
+export { WalletDataWrapper, SetupText, SetupTextKey }

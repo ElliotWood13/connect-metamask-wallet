@@ -18,6 +18,7 @@ export const useEthereumSetup = () => {
             setLoading(true)
             window.ethereum.on("chainChanged", onChainChanged);
             window.ethereum.on('accountsChanged', onAccountChanged);
+            
             setTimeout(() => {
                 onChainChanged(window.ethereum.chainId)
                 onAccountChanged([window.ethereum.selectedAddress])
@@ -33,5 +34,5 @@ export const useEthereumSetup = () => {
         };
       }, []);
       
-      return { chainId, accounts, loading, setLoading}
+      return { chainId, accounts, loading, setLoading }
 }
