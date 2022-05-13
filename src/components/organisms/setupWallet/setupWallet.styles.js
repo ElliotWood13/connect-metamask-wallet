@@ -28,7 +28,7 @@ const SetupWrapper = styled.div`
 
 const ButtonWrapper = styled.div`
     text-align: center;
-    margin-top: ${props => props.setupComplete ? '16px' : '0'};
+    margin-top: 16px;
 `
 
 export { SetupContainer, SetupWrapper, ButtonWrapper }

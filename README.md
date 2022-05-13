@@ -6,6 +6,8 @@ A user is able to connect to a MetaMask wallet by clicking the 'Connect Wallet' 
 If a user is not on the BNB SmartChain Mainnet then they will be asked to switch to it.
 Once connected, the network ID and wallet address will be displayed.
 
+If a user changes account or network the network ID and wallet address will update and the user will see the 'Connect Wallet' button again.
+
 #### Instructions:
 
 To start this application run the following command from the root of the project:

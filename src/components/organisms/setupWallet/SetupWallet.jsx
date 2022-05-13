@@ -7,14 +7,15 @@ export const SetupWallet = ({ setupComplete, accounts, chainId, status, handleCo
     return (
         <SetupContainer>
             <SetupWrapper>
-                {setupComplete ? (
                     <WalletData account={accounts[0]} chainId={chainId} />
-                ) : (
-                    <>  
-                        <ButtonWrapper setupComplete={setupComplete}><PrimaryButton text="Connect Wallet" onClick={handleConnectWallet} disabled={loading} aria-label="Connect your MetaMask wallet" /></ButtonWrapper>
-                        {status.state && <Alert {...status} />}
-                    </>
-                )}
+                    {!setupComplete && (
+                        <>
+                            <ButtonWrapper>
+                                <PrimaryButton text="Connect Wallet" onClick={handleConnectWallet} disabled={loading} aria-label="Connect your MetaMask wallet" />
+                            </ButtonWrapper>
+                            {status.state && <Alert {...status} />}
+                        </>
+                    )}
             </SetupWrapper>
         </SetupContainer>
     )
