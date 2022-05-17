@@ -4,6 +4,9 @@ import { WalletData } from '../../atoms/walletData'
 import { SetupContainer, SetupWrapper, ButtonWrapper } from './setupWallet.styles'
 
 export const SetupWallet = ({ setupComplete, accounts, chainId, status, handleConnectWallet, loading }) => {
+    const buttonText = !!accounts[0] ? 'Change Network' : 'Connect Wallet'
+    const buttonLabel = !!accounts[0] ? 'Change wallet network' : 'Connect your MetaMask wallet'
+    
     return (
         <SetupContainer>
             <SetupWrapper>
@@ -11,7 +14,7 @@ export const SetupWallet = ({ setupComplete, accounts, chainId, status, handleCo
                     {!setupComplete && (
                         <>
                             <ButtonWrapper>
-                                <PrimaryButton text="Connect Wallet" onClick={handleConnectWallet} disabled={loading} aria-label="Connect your MetaMask wallet" />
+                                <PrimaryButton text={buttonText} onClick={handleConnectWallet} disabled={loading} aria-label={buttonLabel} />
                             </ButtonWrapper>
                             {status.state && <Alert {...status} />}
                         </>

@@ -16,8 +16,10 @@ export const useEthereumSetup = () => {
     useEffect(() => {        
         if (window.ethereum) {
             setLoading(true)
-            window.ethereum.on("chainChanged", onChainChanged);
+            window.ethereum.on('chainChanged', onChainChanged);
             window.ethereum.on('accountsChanged', onAccountChanged);
+            window.ethereum.on('connect', onAccountChanged);
+            window.ethereum.on('disconnect', onAccountChanged);
             
             setTimeout(() => {
                 onChainChanged(window.ethereum.chainId)
@@ -28,11 +30,13 @@ export const useEthereumSetup = () => {
     
         return () => {
             if (window.ethereum) {
-                window.ethereum.removeListener("chainChanged", onChainChanged);
+                window.ethereum.removeListener('chainChanged', onChainChanged);
                 window.ethereum.removeListener('accountsChanged', onAccountChanged);
+                window.ethereum.removeListener('connect', onAccountChanged);
+                window.ethereum.removeListener('disconnect', onAccountChanged);
             }
         };
       }, []);
-      
+
       return { chainId, accounts, loading, setLoading }
 }
