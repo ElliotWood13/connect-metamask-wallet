@@ -5,12 +5,12 @@ export const useEthereumSetup = () => {
     const [accounts, setAccounts] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const onChainChanged = (id) => {
-        setChainId(id)
+    const onChainChanged = () => {
+        setChainId(window.ethereum.chainId)
     }
 
-    const onAccountChanged = (acc) => {
-        setAccounts(acc)
+    const onAccountChanged = () => {
+        setAccounts([window.ethereum.selectedAddress])
     }
 
     useEffect(() => {        
@@ -22,8 +22,8 @@ export const useEthereumSetup = () => {
             window.ethereum.on('disconnect', onAccountChanged);
             
             setTimeout(() => {
-                onChainChanged(window.ethereum.chainId)
-                onAccountChanged([window.ethereum.selectedAddress])
+                onChainChanged()
+                onAccountChanged()
                 setLoading(false)
             }, 1000);
         }
