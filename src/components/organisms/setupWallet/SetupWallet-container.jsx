@@ -51,7 +51,7 @@ export const SetupWalletContainer = () => {
         <SetupWallet 
             setupComplete={setupComplete} 
             accounts={accounts} 
-            chainId={chainId} 
+            chainId={accounts[0] ? chainId : ''} 
             status={status} 
             handleConnectWallet={handleConnectWallet} 
             loading={loading}  
